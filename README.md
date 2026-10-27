@@ -80,6 +80,6 @@ O projeto é organizado de forma modular para facilitar a edição e manutençã
 
 ---
 
-## 📄 Licença
+## Licença
 
 Sinta-se à vontade para utilizar e modificar este modelo conforme as necessidades do seu trabalho acadêmico.
