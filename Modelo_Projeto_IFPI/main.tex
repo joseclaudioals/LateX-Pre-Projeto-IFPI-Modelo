@@ -1,0 +1,152 @@
+\documentclass[12pt,a4paper]{article}
+
+% Pacotes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{times} % Fonte Times New Roman
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage[style=abnt, backend=biber]{biblatex}
+\addbibresource{bib/referencias.bib} 
+% Adequando a NBR 10520:2023
+% No arquivo .bib não escreva o nome do autor com caixa alta
+\renewcommand*{\UpperOrSCCite}[1]{#1}
+
+\hypersetup{hidelinks}
+
+% Configuração de Margens 
+\geometry{
+    top=3cm,
+    left=3cm,
+    bottom=2cm,
+    right=2cm
+}
+
+% Configuração de Espaçamento e Recuo
+\onehalfspacing 
+\setlength{\parindent}{1.25cm} 
+
+% Configuração de Citações Longas 
+\renewenvironment{quote}
+  {\list{}{\leftmargin=4cm \rightmargin=0cm}%
+   \item\relax\singlespacing\small}
+  {\endlist}
+
+% Formatação dos títulos das seções
+\titleformat{\section}{\normalfont\bfseries\MakeUppercase}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont}{\thesubsubsection}{1em}{}
+
+% Renomear títulos automáticos para o padrão ABNT
+\renewcommand{\listfigurename}{LISTA DE ILUSTRAÇÕES}
+\renewcommand{\listtablename}{LISTA DE TABELAS}
+
+% Configuração sumário
+\setcounter{tocdepth}{3} % mostra até a seção terciária (1.1.1)
+\renewcommand{\cftdotsep}{1}
+\renewcommand{\cftsecdotsep}{\cftdotsep}        
+\renewcommand{\cftsubsecdotsep}{\cftdotsep}
+\renewcommand{\cftsubsubsecdotsep}{\cftdotsep}
+
+% Sem espaço extra entre os itens: o espaçamento vem só do entrelinhas 1,5
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% Primárias (
+\renewcommand{\cftsecfont}{\normalfont\bfseries}
+\renewcommand{\cftsecpagefont}{\normalfont\bfseries}
+\renewcommand{\cftsecleader}{\bfseries\cftdotfill{\cftsecdotsep}}
+% Secundárias 
+\renewcommand{\cftsubsecfont}{\normalfont\bfseries}
+\renewcommand{\cftsubsecpagefont}{\normalfont\bfseries}
+\renewcommand{\cftsubsecleader}{\bfseries\cftdotfill{\cftsubsecdotsep}}
+% Terciárias 
+\renewcommand{\cftsubsubsecfont}{\normalfont}
+\renewcommand{\cftsubsubsecpagefont}{\normalfont}
+\renewcommand{\cftsubsubsecleader}{\normalfont\cftdotfill{\cftsubsubsecdotsep}}
+
+% Todos os níveis alinhados à esquerda 
+\cftsetindents{section}{0em}{1.5em}
+\cftsetindents{subsection}{0em}{2.5em}
+\cftsetindents{subsubsection}{0em}{3.5em}
+
+% Comando que desenha o sumário completo 
+\makeatletter
+\newcommand{\sumarioabnt}{%
+  \begingroup
+    \begin{center}\normalfont\bfseries\normalsize SUMÁRIO\end{center}%
+    \vspace{\baselineskip}%
+    \begin{spacing}{1.5}\@starttoc{toc}\end{spacing}%
+  \endgroup
+}
+\makeatother
+
+% Configuração da lista de ilustrações
+
+\renewcommand{\cftloftitlefont}{\hfill\bfseries\MakeUppercase}
+\renewcommand{\cftafterloftitle}{\hfill}
+
+% Configuração da lista de tabelas
+\renewcommand{\cftlottitlefont}{\hfill\bfseries\MakeUppercase}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+
+% Configuração de numeração das paginas
+\fancypagestyle{plain}{
+    \fancyhf{} % Limpa todos os cabeçalhos e rodapés
+    \fancyhead[R]{\thepage} % Coloca o número da página à direita (Right)
+    \renewcommand{\headrulewidth}{0pt} % Remove a linha horizontal do cabeçalho
+    \setlength{\headheight}{14.5pt} % Ajusta a altura para não sobrepor o texto
+}
+
+% Remover numeração de página da capa até o sumário
+\pagestyle{empty}
+
+\input{dados}
+
+\begin{document}
+
+% Elementos pré textuais
+\input{estrutura/1_pre_textuais/capa}
+\input{estrutura/1_pre_textuais/folha_rosto}
+\input{estrutura/1_pre_textuais/folha_aprovacao}
+\input{estrutura/1_pre_textuais/lista_ilustracoes}
+\input{estrutura/1_pre_textuais/lista_quadros_tabelas}
+\input{estrutura/1_pre_textuais/lista_abreviaturas}
+\input{estrutura/1_pre_textuais/lista_simbolo}
+\input{estrutura/1_pre_textuais/sumario}
+\thispagestyle{empty}
+\newpage
+
+% Elementos textuais
+\input{estrutura/2_textuais/1-introducao}
+\input{estrutura/2_textuais/2-justificativa}
+\input{estrutura/2_textuais/3-objetivos}
+\input{estrutura/2_textuais/4-referencial_teórico}
+\input{estrutura/2_textuais/5-metodologia}
+\input{estrutura/2_textuais/6-resultados_esperados}
+\input{estrutura/2_textuais/7-orcamento}
+\input{estrutura/2_textuais/8-cronograma}
+
+% Elementos pós textuais
+\input{estrutura/3_pos_textuais/referencias}
+\newpage
+\input{estrutura/3_pos_textuais/aprendice_A}
+\newpage
+\input{estrutura/3_pos_textuais/aprendice_B}
+\newpage
+\input{estrutura/3_pos_textuais/anexo}
+
+\end{document}
